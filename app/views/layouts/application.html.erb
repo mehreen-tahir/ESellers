@@ -7,27 +7,44 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div style="float:right">
-    <% if user_signed_in? %>
-      <% if current_user.image.present? %>
-        <%= link_to image_tag(current_user.picture_url("thumb")), current_user.picture_url %>
-      <% end %>
-      Signed in as <b> <%= link_to (current_user.username).capitalize, edit_user_registration_path %> </b>
-      <%= link_to "\tSign out",destroy_user_session_path %>
-    <% else %>
-     <%= link_to "Admin Login",new_admin_user_session_path %> | <%= link_to "Sign In",new_user_session_path %> | <%= link_to "Sign Up",new_user_registration_path %>
-    <% end %>
+  <div class="navbar navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="products">ESellers</a>
+
+      <div class="nav-collapse collapse">
+        <ul class="nav pull-left">
+          <li><%= link_to ' Profile', profile_path %></li>
+          <li><%= link_to 'DashBoard', products_path %></li>
+        </ul>
+        <ul class="nav pull-right">
+          <% if user_signed_in? %>
+          <li><%= link_to (current_user.username).capitalize, edit_user_registration_path %></li>
+          <li><%= link_to "\tSign out",destroy_user_session_path %></li>
+          <% else %>
+            <li><%= link_to "Admin Login",new_admin_user_session_path %></li>
+            <li><%= link_to "Sign In",new_user_session_path %></li>
+            <li><%= link_to "Sign Up",new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div>
-    <% if user_signed_in? %>
-      <%= link_to ' Profile', profile_path %> |
-    <% end %>
-    <%= link_to 'DashBoard', products_path %>
-  </div>
+</div>
+
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
-<%= yield %>
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>
