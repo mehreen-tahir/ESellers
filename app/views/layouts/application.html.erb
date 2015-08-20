@@ -7,6 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div style="float:right">
+    <% if user_signed_in? %>
+      Signed in as <b><%= current_user.username %></b>
+      <%= link_to "\tSign out",destroy_user_session_path %>
+    <% else %>
+      <%= link_to "Sign In",new_user_session_path %> | <%= link_to "Sign Up",new_user_registration_path %>
+    <% end %>
+  </div>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
