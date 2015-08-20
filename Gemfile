@@ -39,3 +39,4 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'paperclip'
 gem "nested_form"
+gem 'kaminari'
