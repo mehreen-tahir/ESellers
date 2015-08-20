@@ -29,7 +29,11 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review.update_attributes(params[:review])
+    if @review.user.eql? current_user
+      @review.update_attributes(params[:review])
+    else
+      flash[:notice] = "You do not have the acess to Edit!"
+    end
     redirect_to @review.product
   end
 
