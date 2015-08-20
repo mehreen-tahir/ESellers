@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @image = @product.images.new
     respond_with(@product)
   end
 
