@@ -15,7 +15,7 @@
       Signed in as <b> <%= link_to (current_user.username).capitalize, edit_user_registration_path %> </b>
       <%= link_to "\tSign out",destroy_user_session_path %>
     <% else %>
-      <%= link_to "Sign In",new_user_session_path %> | <%= link_to "Sign Up",new_user_registration_path %>
+     <%= link_to "Admin Login",new_admin_user_session_path %> | <%= link_to "Sign In",new_user_session_path %> | <%= link_to "Sign Up",new_user_registration_path %>
     <% end %>
   </div>
   <div>
