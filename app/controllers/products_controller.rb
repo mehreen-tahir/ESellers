@@ -31,7 +31,11 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product.update_attributes(params[:product])
+    if params[:product][:reviews_attributes].first.last[:user_id].to_i == @product.user_id.to_i
+       flash[:notice] = "You can't review your own product!"
+    else
+      @product.update_attributes(params[:product])
+    end
     respond_with(@product)
   end
 
