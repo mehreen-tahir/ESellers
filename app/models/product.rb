@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   PER_PAGE = 5
-  attr_accessible :description, :price, :title, :images_attributes, :reviews_attributes
+  attr_accessible :description, :price, :title, :images_attributes, :reviews_attributes,:user_id
 
   has_many :images, as: :imageable
   has_many :reviews
