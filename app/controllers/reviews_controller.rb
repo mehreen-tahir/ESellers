@@ -22,18 +22,19 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(params[:review])
+    @review.product = @product
     @review.save
     respond_with(@review)
   end
 
   def update
     @review.update_attributes(params[:review])
-    respond_with(@review)
+    redirect_to @review.product
   end
 
   def destroy
     @review.destroy
-    respond_with(@review)
+    redirect_to :back
   end
 
   private

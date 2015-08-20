@@ -1,0 +1,23 @@
+<%= nested_form_for @product, html: { multipart: true} do |f| %>
+
+<table>
+  <% @product.reviews.each do |review| %>
+    <tr>
+      <td><%= review.description %></td>
+      <td><%= link_to 'Edit', edit_product_review_path(@product.id,review) %></td>
+    </tr>
+  <% end %>
+</table>
+
+  <div class="feild">
+    <% f.fields_for :reviews do |review| %>
+      <%= review.text_field :description %>
+    <% end %>
+    <p><%= f.link_to_add "Add a Review", :reviews %></p>
+  </div>
+
+  <div class="actions">
+    <p><%= f.submit "Submit Review", :data => { :target => "#reviews" } %></p>
+  </div>
+<% end %>
+
