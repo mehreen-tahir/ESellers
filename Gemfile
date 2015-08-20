@@ -38,3 +38,4 @@ gem 'jquery-rails'
 # gem 'debugger'
 gem 'devise'
 gem 'paperclip'
+gem "nested_form"
