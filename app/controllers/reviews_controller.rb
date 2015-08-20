@@ -34,7 +34,11 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review.destroy
+    if @review.user.eql? current_user or @review.product.user.eql? current_user
+      @review.destroy
+    else
+      flash[:notice] = "You do not have the acess to delete!"
+    end
     redirect_to :back
   end
 
