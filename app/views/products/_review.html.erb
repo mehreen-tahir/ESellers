@@ -1,13 +1,14 @@
-<%= nested_form_for @product, html: { multipart: true} do |f| %>
+<%= nested_form_for @product do |f| %>
 
-<table>
-  <% @product.reviews.each do |review| %>
-    <tr>
-      <td><%= review.description %></td>
-      <td><%= link_to 'Edit', edit_product_review_path(@product.id,review) %></td>
-    </tr>
-  <% end %>
-</table>
+  <table id="review_list">
+    <% @product.reviews.each do |review| %>
+      <tr>
+        <td><%= review.description %></td>
+        <td><%= link_to 'Edit', edit_product_review_path(@product.id,review) %></td>
+        <td><%= link_to 'Delete', product_review_path(@product.id,review) , confirm: "Are you sure?", method: :delete %></td>
+      </tr>
+    <% end %>
+  </table>
 
   <div class="feild">
     <% f.fields_for :reviews do |review| %>
@@ -17,7 +18,7 @@
   </div>
 
   <div class="actions">
-    <p><%= f.submit "Submit Review", :data => { :target => "#reviews" } %></p>
+    <p><%= f.submit "Submit Review", data: { target: "#reviews" } %></p>
   </div>
 <% end %>
 
