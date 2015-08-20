@@ -9,6 +9,9 @@
 <body>
   <div style="float:right">
     <% if user_signed_in? %>
+      <% if current_user.image.present? %>
+        <%= link_to image_tag(current_user.picture_url("thumb")), current_user.picture_url %>
+      <% end %>
       Signed in as <b><%= current_user.username %></b>
       <%= link_to "\tSign out",destroy_user_session_path %>
     <% else %>
