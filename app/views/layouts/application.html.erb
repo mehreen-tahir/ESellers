@@ -18,6 +18,12 @@
       <%= link_to "Sign In",new_user_session_path %> | <%= link_to "Sign Up",new_user_registration_path %>
     <% end %>
   </div>
+  <div>
+    <% if user_signed_in? %>
+      <%= link_to ' Profile', profile_path %> |
+    <% end %>
+    <%= link_to 'DashBoard', products_path %>
+  </div>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 

@@ -1,0 +1,44 @@
+<h1>Your products</h1>
+<table>
+
+<% @products.each do |product| %>
+  <tr>
+    <% if product.images.present? %>
+      <td><%= link_to image_tag(product.images.first.photo(:thumb)), product.images.first.photo.url %></td>
+    <%end %>
+    <b><td> <%= product.title %></td></b>
+    <td><%= product.description %></td>
+    <td><%= product.price %></td>
+    <td><%= link_to 'Show', product %></td>
+    <td><%= link_to 'Edit', edit_product_path(product) %></td>
+    <td><%= button_to 'Destroy',  product,  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% product.reviews.each do |review| %>
+      <tr>
+        <td><%= review.description %></td>
+        <td><%= link_to 'Edit', edit_product_review_path(product.id,review) %></td>
+        <td><%= link_to 'Delete', product_review_path(product.id,review) , confirm: "Are you sure?", method: :delete %></td>
+      </tr>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Create New Product', new_product_path %>
+
+<hr>
+
+<h1>Your reviews</h1>
+
+<table>
+<% @reviews.each do |review| %>
+  <tr>
+    <td><%= review.description %></td>
+    <td><%= link_to 'Show', product_path(review.product) %></td>
+    <td><%= link_to 'Edit', edit_product_review_path(review.product,review) %></td>
+    <td><%= link_to 'Delete', product_review_path(review.product,review) , confirm: "Are you sure?", method: :delete %></td>
+    </tr>
+<% end %>
+</table>
+
+<br />
+
