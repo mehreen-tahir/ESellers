@@ -13,7 +13,9 @@
   <div class="feild">
     <% f.fields_for :reviews do |review| %>
       <%= review.text_field :description %>
-      <%= review.hidden_field :user_id, :value => current_user.id %>
+      <% if user_signed_in? %>
+        <%= review.hidden_field :user_id, :value => current_user.id %>
+      <% end %>    
     <% end %>
     <p><%= f.link_to_add "Add a Review", :reviews %></p>
   </div>
