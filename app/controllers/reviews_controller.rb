@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_filter :set_review, only: [:show, :edit, :update, :destroy]
+  before_filter :set_product, except: [:index]
 
   respond_to :html
 
@@ -9,6 +10,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    @review = Review.new
     respond_with(@review)
   end
 
@@ -21,28 +23,27 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(params[:review])
-    @review.product = @product
+    return false if @product.user == current_user
+    @review = @product.reviews.new(params[:review])
     @review.user = current_user
-    @review.save
-    respond_with(@review)
+    respond_to do |format|
+      if  @review.save
+        format.html { redirect_to @review.product, notice: 'Review was successfully created.' }
+        format.js
+      else
+        format.html { render action: "new" }
+        format.js
+      end
+    end
   end
 
   def update
-    if @review.user.eql? current_user
-      @review.update_attributes(params[:review])
-    else
-      flash[:notice] = "You do not have the acess to Edit!"
-    end
-    redirect_to @review.product
+    @review.update_attributes(params[:review])
+    respond_with(@review.product)
   end
 
   def destroy
-    if @review.user.eql? current_user or @review.product.user.eql? current_user
-      @review.destroy
-    else
-      flash[:notice] = "You do not have the acess to delete!"
-    end
+    @review.destroy
     redirect_to :back
   end
 
@@ -50,4 +51,9 @@ class ReviewsController < ApplicationController
     def set_review
       @review = Review.find(params[:id])
     end
+
+    def set_product
+      @product = Product.find(params[:product_id])
+    end
+
 end

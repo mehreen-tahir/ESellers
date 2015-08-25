@@ -1,0 +1,4 @@
+<% if @review %>
+  $('#review_list').last('tr').append("<%= j (render @review) %>");
+<% end %>
+$('#review_description').val('')

@@ -10,13 +10,13 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @review = @product.reviews.new
     respond_with(@product)
   end
 
   def new
     @product = Product.new
     @image = @product.images.new
-    @review = @product.reviews.new
     respond_with(@product)
   end
 
@@ -31,23 +31,13 @@ class ProductsController < ApplicationController
   end
 
   def update
-    if params[:product][:reviews_attributes].present? and params[:product][:reviews_attributes].first.last[:user_id].to_i == @product.user_id.to_i
-       flash[:notice] = "You can't review your own product!"
-    else
-      @product.update_attributes(params[:product])
-    end
+    @product.update_attributes(params[:product])
     respond_with(@product)
   end
 
   def destroy
     @product.destroy
     respond_with(@product)
-  end
-
-  def profile
-    @products = Product.where("user_id = ?", current_user).ordered.includes(:images).page(params[:page]).per(Product::PER_PAGE)
-    @reviews = Review.where("user_id = ?", current_user)
-    respond_with(@products)
   end
 
   private

@@ -6,7 +6,6 @@ class Product < ActiveRecord::Base
   has_many :reviews
   belongs_to :user
   accepts_nested_attributes_for :images, allow_destroy: true
-  accepts_nested_attributes_for :reviews, allow_destroy: true
 
   scope :ordered, -> { order("created_at DESC") }
 end
