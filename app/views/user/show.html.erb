@@ -1,0 +1,20 @@
+<%= link_to image_tag(@user.picture_url("thumb")), @user.picture_url %>
+</br>
+<%= @user.username %>
+</br>
+<%= @user.email %>
+
+<h1>products</h1>
+<table>
+<% @products.each do |product| %>
+  <tr>
+    <% if product.images.present? %>
+      <td><%= link_to image_tag(product.images.first.photo(:thumb)), product.images.first.photo.url %></td>
+    <% end %>
+    <b><td> <%= product.title %></td></b>
+    <td><%= product.description %></td>
+    <td><%= product.price %></td>
+    <td><%= link_to 'Show', product %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,18 +1,20 @@
 Eseller::Application.routes.draw do
 
+  resources :user, :only => :show
+  get 'dashboard', to: 'user#dashboard'
+
   root :to => 'products#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
   resources :products do 
-      resources :reviews
+    resources :reviews
   end
 
 
   devise_for :users
   ActiveAdmin.routes(self)
-  get 'profile', to: 'products#profile'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
