@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   #:lockable, :timeoutable and :omniauthable
 
-  PER_PAGE = 2
+  PER_PAGE = 10
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
