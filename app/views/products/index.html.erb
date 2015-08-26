@@ -18,6 +18,7 @@
     <td><%= product.description %></td>
     <td><%= product.price %></td>
     <td><%= link_to 'Show', product %></td>
+    <td><%= link_to 'Owner', product.user %></td>
   </tr>
 <% end %>
 </table>
