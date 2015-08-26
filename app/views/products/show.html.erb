@@ -1,28 +1,31 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Title:</b>
-  <%= @product.title %>
-</p>
-
-<p>
-  <b>Price:</b>
-  <%= @product.price %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @product.description %>
-</p>
-
-<p>
-  <% @product.images.each do |picture| %>
-    <%= link_to image_tag(picture.photo.url(:thumb)), picture.photo.url %>
-  <% end %>
-</p>
-
-<%= render 'reviews/reviews' %>
-<%= render 'reviews/review_form' %>
-
+<div class="panel panel-default">
+  <div class="panel-heading">Product Details</div>
+  <div class="panel-body">
+    <div>
+      <% @product.images.each do |picture| %>
+        <%= link_to image_tag(picture.photo.url(:thumb)), picture.photo.url, class: "img-thumbnail" %>
+      <% end %>
+    </div>
+    <div>
+      <b>Name: </b>
+      <%= @product.title %>
+    </div>
+    <div>
+      <b>Price:</b>
+      <%= @product.price %>
+    </div>
+    <div>
+      <b>Description:</b>
+      <%= @product.description %>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Reviews</div>
+  <div class="panel-body">
+    <%= render 'reviews/reviews' %>
+    <%= render 'reviews/review_form' %>
+  </div>
+</div>
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

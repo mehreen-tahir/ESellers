@@ -1,3 +1,5 @@
-<tr>
-  <td><%= review.description %></td>
-</tr>
+<% unless review.new_record? %>
+  <tr>
+    <td><%= review.description%></td>
+  </tr>
+<% end %>
