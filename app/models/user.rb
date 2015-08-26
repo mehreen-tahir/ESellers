@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   validates :username, length: { minimum: 5 }
   # Include default devise modules. Others available are:
   #:lockable, :timeoutable and :omniauthable
+
+  PER_PAGE = 2
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 

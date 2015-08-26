@@ -3,7 +3,7 @@ class UserController < ApplicationController
   respond_to :html
 
   def show
-    @products = @user.products.includes(:images)
+    @products = @user.products.includes(:images).page(params[:page]).per(User::PER_PAGE)
   end
 
   def dashboard
