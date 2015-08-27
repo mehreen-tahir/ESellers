@@ -17,16 +17,13 @@
         <span class="icon-bar"></span>
       </button>
       <div class="animbrand">
-        <a class="navbar-brand animate" href="#">ESellers</a>
+        <%= link_to 'ESellers', root_path, class: "navbar-brand animate"%>
       </div>
     </div>
-    <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to 'DashBoard', dashboard_path %></li>
-      <li><%= link_to 'Products', products_path %></li>
-    </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
-        <li><%= link_to (current_user.username).capitalize, edit_user_registration_path %></li>
+        <li><%= link_to 'DashBoard', dashboard_path %></li>
+        <li><%= link_to (current_user.username).titleize, edit_user_registration_path %></li>
         <li><%= link_to "\tSign out",destroy_user_session_path %></li>
       <% else %>
         <li><%= link_to "Admin Login",new_admin_user_session_path %></li>
@@ -37,8 +34,9 @@
   </div>
 </nav>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+<% flash.each do |key, msg| %>
+  <%= content_tag :div, msg, :id => key %>
+<% end %>
 
 <div class="container">
   <%= yield %>

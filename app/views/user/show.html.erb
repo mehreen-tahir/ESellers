@@ -14,10 +14,10 @@
     <div class="thumbnail">
       <div>
         <p class="pull-right">
-          $<%= product.price %>
+          <%= format_price(product.price) %>
         </p>
         <p class="lead">
-          <%= link_to (product.title).capitalize, product %>
+          <%= link_to product.title.titleize, product %>
         </p>
       </div>
       <div class= "pro-img">

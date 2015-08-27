@@ -7,16 +7,13 @@
       <% end %>
     </div>
     <div>
-      <b>Name: </b>
-      <%= @product.title %>
+      <b><%= @product.title.titleize %></b>
     </div>
-    <div>
-      <b>Price:</b>
-      <%= @product.price %>
+    <div class="pull-left">
+      <i><%= @product.description %></i>
     </div>
-    <div>
-      <b>Description:</b>
-      <%= @product.description %>
+    <div class="pull-right">
+      <b><%= format_price(@product.price) %></b>
     </div>
   </div>
 </div>
@@ -24,8 +21,12 @@
   <div class="panel-heading">Reviews</div>
   <div class="panel-body">
     <%= render 'reviews/reviews' %>
-    <%= render 'reviews/review_form' %>
+    <% unless valid_user?(@product.user) %>
+      <%= render 'reviews/review_form' %>
+    <% end %>
   </div>
 </div>
-<%= link_to 'Edit', edit_product_path(@product) %> |
+<% if valid_user?(@product.user) %>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+<% end %>
 <%= link_to 'Back', products_path %>

@@ -14,9 +14,9 @@
 
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_field :description, required: true %>
   </div>
   <div class="actions">
-    <%= f.submit :class => "btn btn-primary" %>
+    <%= f.submit class:"btn btn-primary" %>
   </div>
 <% end %>
