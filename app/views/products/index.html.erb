@@ -21,6 +21,10 @@
         <td>
           <%= link_to 'View', product , class: "product-link" %>
           <%= link_to 'Seller', product.user, class: "product-link" %>
+          <%= form_for @order_item, remote: true do |f| %>
+            <%= f.hidden_field :product_id, value: product.id %>
+            <%= f.submit 'Add To Cart' %>
+          <% end %>
         </td>
       </tr>
     <% end %>

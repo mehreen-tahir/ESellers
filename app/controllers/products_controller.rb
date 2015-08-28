@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.ordered.includes(:images).page(params[:page]).per(Product::PER_PAGE)
+    @order_item = current_order.order_items.new
     respond_with(@products)
   end
 

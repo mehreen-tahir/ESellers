@@ -12,6 +12,8 @@ Eseller::Application.routes.draw do
     resources :reviews
   end
 
+  resource :cart, only: [:show]
+  resources :order_items, only: [:create, :destroy]
 
   devise_for :users
   ActiveAdmin.routes(self)
