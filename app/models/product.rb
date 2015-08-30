@@ -4,9 +4,9 @@ class Product < ActiveRecord::Base
   validates :title, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }
 
-  has_many :images, as: :imageable
+  has_many :images, as: :imageable, dependent: :destroy
   has_many :reviews, dependent: :destroy
-  has_many :order_item
+  has_many :order_item, dependent: :destroy
 
   belongs_to :user
   accepts_nested_attributes_for :images, allow_destroy: true
