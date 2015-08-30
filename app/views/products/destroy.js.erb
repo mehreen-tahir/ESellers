@@ -1,0 +1,6 @@
+<% if @product.errors.any? %>
+  alert("Errors in removing your product.")
+<% else %>
+  $("#row_<%= @product.id %>").remove();
+<% end %>
+

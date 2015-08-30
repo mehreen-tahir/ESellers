@@ -38,7 +38,6 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    respond_with(@product)
   end
 
   private
