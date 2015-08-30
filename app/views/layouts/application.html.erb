@@ -37,11 +37,14 @@
   </div>
 </nav>
 
-<% flash.each do |key, msg| %>
-  <%= content_tag :div, msg, :id => key %>
-<% end %>
-
 <div class="container">
+  <% flash.each do |type, value| %>
+    <div class="alert alert-<%= type %>">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong> <%= value %> </strong>
+    </div>
+  <% end %>
+
   <%= yield %>
 </div>
 
