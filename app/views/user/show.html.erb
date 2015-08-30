@@ -4,8 +4,12 @@
     <% if @user.image.present? %>
       <%= link_to image_tag(@user.picture_url("thumb")), @user.picture_url %>
     <% end %>
-    <div> Name: <%= @user.username %> </div>
-    <div> Email:  <%= @user.email %> </div>
+    <div class="profile-username">
+      <b><%= @user.username %></b>
+    </div>
+    <div class="pull-left">
+      <i><%= @user.email %></i>
+    </div>
   </div>
 </div>
 <div class="row">
