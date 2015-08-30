@@ -1,0 +1,5 @@
+<% if @review.errors.any? %>
+  alert("Errors in removing your review.")
+<% else %>
+  $("#row_<%= @review.id %>").remove();
+<% end %>

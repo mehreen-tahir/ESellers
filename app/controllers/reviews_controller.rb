@@ -47,7 +47,6 @@ class ReviewsController < ApplicationController
   def destroy
     return false unless @review.user == current_user or @review.product.user == current_user
     @review.destroy
-    redirect_to :back
   end
 
   private
