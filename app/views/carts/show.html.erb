@@ -11,10 +11,10 @@
 
   <tbody>
     <% @order_items.each do |order_item| %>
-      <tr>
+      <tr id="row_<%= order_item.id %>">
         <td><%= link_to order_item.product.title, order_item.product , class: "product-link" %></td>
         <td><%= format_price(order_item.product.price) %></td>
-        <td><%= link_to 'Remove', order_item,  method: :delete, data: { confirm: 'Do you really want to remove this item?' } %></td>
+        <td><%= link_to 'Remove', order_item,  method: :delete, remote: true, data: { confirm: 'Do you really want to remove this item?' } %></td>
       </tr>
     <% end %>
   </tbody>

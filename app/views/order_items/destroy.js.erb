@@ -1,0 +1,5 @@
+<% if @order_item.errors.any? %>
+  alert("Errors in removing your order.")
+<% else %>
+  $("#row_<%= @order_item.id %>").remove();
+<% end %>
