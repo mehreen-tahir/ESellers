@@ -1,5 +1,13 @@
 <% unless review.new_record? %>
   <tr>
-    <td><%= review.description%></td>
+    <td>
+      <div>
+        <% if review.user.image.present? %>
+          <%= link_to image_tag(review.user.picture_url("thumb")), review.user.picture_url, class: "img-thumbnail"%>
+        <% end %>
+        <%= link_to review.user.username, review.user, class: "review-user" %>
+        <%= review.description %>
+      </div>
+    </td>
   </tr>
 <% end %>

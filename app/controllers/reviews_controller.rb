@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_filter :set_review, only: [:show, :edit, :update, :destroy]
   before_filter :set_product, except: [:index]
+  before_filter :authenticate_user!, :except => [:show, :index]
 
   respond_to :html
 
@@ -38,11 +39,13 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    return false unless @review.user == current_user
     @review.update_attributes(params[:review])
     respond_with(@review.product)
   end
 
   def destroy
+    return false unless @review.user == current_user or @review.product.user == current_user
     @review.destroy
     redirect_to :back
   end
