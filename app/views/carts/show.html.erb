@@ -1,6 +1,5 @@
 <h3>Cart</h3>
-<h4>Total: <%= cart_total_price %></h4>
-<table id="cart_orders" class="table table-striped table-hover">
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Product Name</th>
@@ -9,7 +8,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="cart_orders">
     <% @order_items.each do |order_item| %>
       <tr id="row_<%= order_item.id %>">
         <td><%= link_to order_item.product.title, order_item.product , class: "product-link" %></td>
@@ -20,5 +19,8 @@
   </tbody>
 </table>
 
+<div class="pull-right">
+  <%= link_to 'Cancel Order', cart_path, method: :delete, remote: true, data: { confirm: 'Do you really want to remove the entire order?' }, class: "btn btn-danger", id: "cancel-order" %>
+</div>
+
 <div><%= paginate @order_items%></div>
-<div><%= page_entries_info @order_items %></div>

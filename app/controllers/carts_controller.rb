@@ -7,4 +7,7 @@ class CartsController < ApplicationController
     respond_with(@order_items)
   end
 
+  def destroy
+    current_order.destroy
+  end
 end
