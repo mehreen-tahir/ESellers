@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
 
   def create
+    return false if current_order.order_items.exists?(params[:order_item])
     @order = current_order
     @order_item = @order.order_items.new(params[:order_item])
     @order_item.save

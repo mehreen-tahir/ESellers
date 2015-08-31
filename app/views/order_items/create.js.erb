@@ -1,5 +1,10 @@
-<% if @order_item.errors.any? || @order_item.errors.any? %>
-  alert("Errors in completing your order.")
+<% if @order_item.nil? %>
+  $("#order-error").removeClass("hidden");
 <% else %>
-  $("#cart-price").html("<%= cart_total_price %>")
+  $("#order-error").addClass("hidden");
+  <% if @order_item.errors.any? %>
+    alert("Try later couldn't add your order item to cart.")
+  <% else %>
+    $("#cart-price").html("<%= cart_total_price %>")
+  <% end %>
 <% end %>

@@ -2,4 +2,5 @@
   alert("Errors in removing your order.")
 <% else %>
   $("#row_<%= @order_item.id %>").remove();
+  $("#cart-price").html("<%= cart_total_price %>")
 <% end %>
