@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   before_filter :set_review, only: [:show, :edit, :update, :destroy]
   before_filter :set_product, except: [:index]
-  before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :authenticate_user!, except: [:show, :index]
 
   respond_to :html
 
@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    return false if @product.user == current_user
+    return false if valid_user?(@product.user)
     @review = @product.reviews.new(params[:review])
     @review.user = current_user
     respond_to do |format|
@@ -39,13 +39,13 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    return false unless @review.user == current_user
+    return false unless valid_user?(@review.user)
     @review.update_attributes(params[:review])
     respond_with(@review.product)
   end
 
   def destroy
-    return false unless @review.user == current_user or @review.product.user == current_user
+    return false unless valid_user?(@review.user) or valid_user?(@review.product.user)
     @review.destroy
   end
 
