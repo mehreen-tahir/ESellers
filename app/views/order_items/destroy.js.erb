@@ -2,5 +2,5 @@
   alert("Errors in removing your order.")
 <% else %>
   $("#row_<%= @order_item.id %>").remove();
-  $("#cart-price").html("<%= cart_total_price %>")
+  $("#cart-price").html("<%= number_to_currency(current_order.orignal_price) %>")
 <% end %>

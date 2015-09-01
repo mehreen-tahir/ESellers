@@ -12,7 +12,10 @@ Eseller::Application.routes.draw do
     resources :reviews
   end
 
-  resource :cart, only: [:show,:destroy]
+  resource :cart, only: [:show, :destroy] do
+    post 'apply_discount'
+  end
+
   resources :order_items, only: [:create, :destroy]
 
   devise_for :users
