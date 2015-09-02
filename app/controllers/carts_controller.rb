@@ -4,7 +4,6 @@ class CartsController < ApplicationController
 
   def show
     @order_items = current_order.order_items.ordered.page(params[:page]).per(OrderItem::PER_PAGE)
-    @order_items.count == 0 ? (render "no_items.html.erb") : respond_with(@order_items)
   end
 
   def destroy
