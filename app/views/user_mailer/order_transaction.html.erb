@@ -1,0 +1,19 @@
+Hy <%= (@user.username).titleize %>.
+</br>
+Thank you for using Esellers. Your order was succesfull with the following details
+</br></br>
+<% @order.order_items.each do |order_item| %>
+  <div>
+    <div>
+      <b><%= (order_item.product.title).titleize %></b>
+      <i><%= number_to_currency(order_item.product.price) %></i>
+    </div>
+  </div>
+<% end %>
+</br>
+<div>
+  Payment was <%= number_to_currency(@order.orignal_price) %>
+  <% if @order.is_discounted %>
+    and the discounted payment was <%= number_to_currency(@order.discounted_price) %>
+  <% end %>
+</div>

@@ -11,6 +11,7 @@ class TransactionsController < ApplicationController
               payment_method_nonce: params[:payment_method_nonce])
     if @result.success?
       current_order.update_attribute(:status, "completed")
+      UserMailer.order_transaction(current_user, current_order).deliver
       session.delete(:order_id)
       redirect_to root_url, notice: "Congraulations! Your transaction has been successfull!"
     else
