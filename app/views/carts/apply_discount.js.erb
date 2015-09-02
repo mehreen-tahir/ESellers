@@ -1,6 +1,6 @@
 <% if @discounted_price.present? and @discounted_price > 0 %>
   $('#discount').html("Orignal price was <%= number_to_currency(current_order.orignal_price) %> & discounted price is <%= number_to_currency(@discounted_price) %>")
-  $("#cart-price").html("<%= number_to_currency(@discounted_price) %>")
+  $("#cart-price").html("<%= number_to_currency(cart_total_price) %>")
 <% else %>
   $('#discount').html("Discount request not completed!")
   $('#coupun_discount_coupon').val('')
