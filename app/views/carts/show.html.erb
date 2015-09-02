@@ -21,9 +21,12 @@
 
 <div class="pull-right">
   <%= link_to 'Cancel Order', cart_path, method: :delete, remote: true, data: { confirm: 'Do you really want to remove the entire order?' }, class: "btn btn-danger", id: "cancel-order" %>
+  <%= link_to 'Checkout Order',  new_transaction_path, class: "btn btn-primary", id: "checkout-order" %>
 </div>
 
 <div><%= paginate @order_items%></div>
 
-<%= render "discount" %>
-<div id="discount"</div>
+<div id="cart-discount">
+  <%= render "discount" %>
+  <div id="discount"></div>
+</div>

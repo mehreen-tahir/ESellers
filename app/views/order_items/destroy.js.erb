@@ -4,3 +4,9 @@
   $("#row_<%= @order_item.id %>").remove();
   $("#cart-price").html("<%= number_to_currency(cart_total_price) %>")
 <% end %>
+
+<% unless current_order.order_items.count > 0 %>
+  $("#cart-discount").html('')
+  $("#cancel-order").attr('disabled', 'disabled')
+  $("#checkout-order").attr('disabled', 'disabled')
+<% end %>

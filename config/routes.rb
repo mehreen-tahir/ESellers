@@ -18,6 +18,8 @@ Eseller::Application.routes.draw do
 
   resources :order_items, only: [:create, :destroy]
 
+  resources :transactions, only: [:new, :create]
+
   devise_for :users
   ActiveAdmin.routes(self)
 

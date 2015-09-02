@@ -44,3 +44,6 @@ gem 'devise'
 gem 'paperclip'
 gem "nested_form"
 gem 'kaminari'
+gem 'braintree', '~> 2.33.1'
+gem 'figaro', '~> 0.7.0'
+gem 'gon', '~> 5.1.2'
