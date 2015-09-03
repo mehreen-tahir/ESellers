@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
 
   def show
     @review = @product.reviews.new
+    @order_item = current_order.order_items.new
     respond_with(@product)
   end
 
