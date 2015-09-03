@@ -12,3 +12,16 @@
  *=require bootstrap_and_overrides
  *= require_tree .
  */
+
+.profile-image {
+  height: 50px;
+  width: 80px;
+  overflow: hidden;
+  border: 1px solid #d9d9d9;
+  border-radius: 15px;
+  background-color: white;
+}
+
+.search-bar {
+  margin-left: 150px;
+}
