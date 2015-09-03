@@ -1,0 +1,6 @@
+development:
+  bin_path: c:\Sphinx\bin
+  searchd_binary_name: searchd
+  indexer_binary_name: indexer
+  quiet_deltas: true
+  port: 9306

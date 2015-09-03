@@ -1,11 +1,12 @@
 class ProductsController < ApplicationController
+
   before_filter :set_product, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :authenticate_user!, except: [:show, :index]
 
   respond_to :html
 
   def index
-    @products = Product.ordered.includes(:images).page(params[:page]).per(Product::PER_PAGE)
+    @products = Product.ordered.search_for_index(params)
     @order_item = current_order.order_items.new
     respond_with(@products)
   end
@@ -44,4 +45,5 @@ class ProductsController < ApplicationController
     def set_product
       @product = Product.find(params[:id])
     end
+
 end
