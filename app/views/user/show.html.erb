@@ -1,3 +1,6 @@
+<div id="order-error" class="alert alert-warning hidden">
+  This item is already in cart!
+</div>
 <div class="panel panel-default">
   <div class="panel-heading">User Information</div>
   <div class="panel-body">
@@ -13,7 +16,7 @@
   </div>
 </div>
 <div class="row">
-<% @products.each_with_index do | product, index| %>
+<% @products.each_with_index do |product, index| %>
   <div class="col-md-4">
     <div class="thumbnail">
       <div>
@@ -24,9 +27,9 @@
           <%= link_to product.title.titleize, product %>
         </p>
       </div>
-      <div class= "pro-img">
+      <div>
         <% if product.images.present? %>
-            <%= link_to image_tag(product.images.first.photo(:medium)), product.images.first.photo.url %>
+            <%= link_to image_tag(product.images.first.photo(:thumb)), product.images.first.photo.url %>
         <% end %>
       </div>
       <div class="caption">
@@ -35,7 +38,10 @@
             <%= link_to 'Show', product, class: "btn btn-default"%>
           </div>
           <div class="btn-group" role="group">
-            <%= link_to 'Add to Cart', product, class: "btn btn-default"%>
+            <%= form_for @order_item, remote: true do |f| %>
+              <%= f.hidden_field :product_id, value: product.id %>
+              <%= f.submit 'Add To Cart', class: "btn btn-default" %>
+            <% end %>
           </div>
         </div>
       </div>
