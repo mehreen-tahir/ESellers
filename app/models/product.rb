@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
 
-  PER_PAGE = 5
+  PER_PAGE = 9
   attr_accessible :description, :price, :title, :images_attributes, :reviews_attributes,:user_id, :delta
   validates :title, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }
