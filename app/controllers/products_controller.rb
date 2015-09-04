@@ -30,11 +30,13 @@ class ProductsController < ApplicationController
     @product = Product.new(params[:product])
     @product.user = current_user
     @product.save
+    flash[:success] = "Product Sucessfully Created"
     respond_with(@product)
   end
 
   def update
     @product.update_attributes(params[:product])
+    flash[:success] = "Product Sucessfully Updated"
     respond_with(@product)
   end
 
