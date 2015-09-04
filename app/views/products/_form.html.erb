@@ -1,4 +1,4 @@
-<%= nested_form_for @product, html: { multipart: true} do |f| %>
+<%= nested_form_for @product, html: { multipart: true, class: "form-horizontal"} do |f| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -11,26 +11,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title, required: true%>
+  <div class="form-group">
+    <%= f.label :title, class: "control-label col-sm-2" %>
+    <div class="col-sm-6">
+      <%= f.text_field :title, required: true, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+
+  <div class="form-group">
+    <%= f.label :description, class: "control-label col-sm-2" %>
+    <div class="col-sm-6">
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :price %><br />
-    <%= f.number_field :price, min: 0 %>
+
+  <div class="form-group">
+    <%= f.label :price, class: "control-label col-sm-2" %>
+    <div class="col-sm-6">
+      <%= f.number_field :price, min: 0, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.fields_for :images do |image| %>
-      <%= image.file_field :photo %>
-      <%= image.link_to_remove "Remove this image" %>
-    <% end %>
-    <p><%= f.link_to_add "Add a image", :images %></p>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <%= f.fields_for :images do |image| %>
+    <div class="btn-group text-center image-feilds" role="group" aria-label="...">
+      <%= image.file_field :photo, class: "btn btn-default btn-file" %>
+      <%= image.link_to_remove "Remove this image", class: "btn btn-danger remove-image" %>
+    </div>
+  <% end %>
+
+  <div><%= f.link_to_add "Add a image", :images, class: "btn btn-info add-image" %></div>
+
+  <div class="pull-right">
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
