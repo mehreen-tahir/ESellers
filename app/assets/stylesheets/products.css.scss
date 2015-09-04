@@ -21,3 +21,9 @@
 .add-image {
   margin: 10px 0 10px 165px;
 }
+
+.product-title {
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}

@@ -1,39 +1,48 @@
-<h3>Products</h3>
 <% if @products.present? %>
   <div id="order-error" class="alert alert-warning hidden">
     This item is already in cart!
   </div>
-  <table class="table table-striped table-hover ">
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @products.each do |product| %>
-        <tr>
-          <% if product.images.present? %>
-            <td><%= link_to image_tag(product.images.first.photo(:thumb)), product.images.first.photo.url, class: "img-thumbnail"%></td>
-          <% end %>
-          <td><%= product.title.titleize %></td>
-          <td><%= product.description %></td>
-          <td><%= format_price(product.price) %></td>
-          <td>
-            <%= link_to 'View', product , class: "product-link" %>
-            <%= link_to 'Seller', product.user, class: "product-link" %>
+<h3>Products</h3>
+<div class="row">
+<% @products.each_with_index do |product, index| %>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <div>
+        <p class="pull-right">
+          <%= format_price(product.price) %>
+        </p>
+        <p class="lead product-title">
+          <%= link_to product.title.titleize, product %>
+        </p>
+      </div>
+      <div>
+        <% if product.images.present? %>
+            <%= link_to image_tag(product.images.first.photo(:thumb)), product.images.first.photo.url %>
+        <% end %>
+      </div>
+      <div class="caption">
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+          <div class="btn-group" role="group">
+            <%= link_to 'Show', product, class: "btn btn-default"%>
+          </div>
+            <div class="btn-group" role="group">
+            <%= link_to 'Seller', product.user, class: "btn btn-default" %>
+          </div>
+          <div class="btn-group" role="group">
             <%= form_for @order_item, remote: true do |f| %>
               <%= f.hidden_field :product_id, value: product.id %>
-              <%= f.submit 'Add To Cart' %>
+              <%= f.submit 'Add To Cart', class: "btn btn-default" %>
             <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if (index+1)%3==0 %>
+    <div class = 'clearfix'></div>
+    <% end %>
+  <% end %>
+</div>
 
   <div><%= paginate @products%></div>
 <% else %>
