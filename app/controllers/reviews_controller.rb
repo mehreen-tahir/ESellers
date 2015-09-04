@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+
   before_filter :set_review, only: [:show, :edit, :update, :destroy]
   before_filter :set_product, except: [:index]
   before_filter :authenticate_user!, except: [:show, :index]
@@ -40,6 +41,7 @@ class ReviewsController < ApplicationController
 
   def update
     return false unless valid_user?(@review.user)
+    flash[:success] = "Review Sucessfully Updated"
     @review.update_attributes(params[:review])
     respond_with(@review.product)
   end
