@@ -1,42 +1,55 @@
-<h2>Sign up</h2>
+<div class="panel panel-default">
+  <div class="panel-heading">Sign up</div>
+  <div class="panel-body form-body">
+    <%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, class: "form-horizontal"}) do |f| %>
+      <%= devise_error_messages! %>
 
-<%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name),:html => { multipart: true }) do |f| %>
-  <%= devise_error_messages! %>
+      <div class="form-group">
+        <%= f.label :email, class: "control-label col-sm-2" %>
+        <div class="col-sm-6">
+          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+      <div class="form-group">
+        <%= f.label :username , class: "control-label col-sm-2" %>
+        <div class="col-sm-6">
+          <%= f.text_field :username, class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </div>
+      <div class="form-group">
+        <%= f.label :password , class: "control-label col-sm-2" %>
+        <i>
+          <% if @minimum_password_length %>
+            (<%= @minimum_password_length %> characters minimum)
+          <% end %>
+        </i>
+        <div class="col-sm-6">
+          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation, class: "control-label col-sm-2" %>
+        <div class="col-sm-6">
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+      <% resource.build_image %>
+      <div class="add-image">
+        <%= f.fields_for :image do |a| %>
+          <%= a.file_field :photo, type: :file, class: "btn btn-default btn-file" %>
+        <% end %>
+      </div>
 
-  <% resource.build_image %>
-  <div class="field">
-    <%= f.fields_for :image do |a| %>
-       <%= a.file_field :photo, type: :file%>
+      <div class="image-feilds">
+        <%= f.submit "Sign up", class: "btn btn-primary" %>
+        <%= render "devise/shared/links" %>
+      </div>
+
     <% end %>
-    <p>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
