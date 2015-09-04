@@ -54,13 +54,7 @@
 </nav>
 
 <div class="container">
-  <% flash.each do |type, value| %>
-    <div class="alert alert-<%= type %>">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong> <%= value %> </strong>
-    </div>
-  <% end %>
-
+  <%= flash_messages %>
   <%= yield %>
 </div>
 
