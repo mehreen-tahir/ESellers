@@ -22,7 +22,7 @@
   <div class="panel-heading">Products</div>
   <div class="panel-body">
     <% @products.each do |product| %>
-      <div id="row_<%= product.id %>">
+      <div id="product_row_<%= product.id %>">
         <div class="product">
           <div class="pull-left">
              <% if product.images.present? %>
@@ -31,7 +31,7 @@
           </div>
           <div class="content">
             <div>
-              <b><%= product.title.titleize %></b>
+              <b><%= get_title(product.title) %></b>
             </div>
             <div>
               <i><%= product.description %></i>
@@ -63,8 +63,8 @@
               <% end %>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
       <hr>
     <% end %>
   </div>
