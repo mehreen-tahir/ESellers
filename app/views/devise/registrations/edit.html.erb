@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Edit <%= resource_name.to_s.humanize %></div>
+  <div class="panel-heading"><h1 class="user-details">Edit <%= resource_name.to_s.humanize %></h1></div>
   <div class="panel-body form-body">
     <%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, html: { multipart: true, class: "form-horizontal"} ) do |f| %>
       <%= devise_error_messages! %>
