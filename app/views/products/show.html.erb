@@ -1,10 +1,16 @@
 <div id="order-error" class="hidden"><%= render "order_items/cart_error_message" %></div>
 <div class="panel panel-default">
   <div class="panel-heading">
-    Product Details
-    <div class="pull-right">
-      <%= link_to 'Seller', @product.user, class: "product-link" %>
-    </div>
+    <h1 class="product-details">
+      <%= get_title(@product.title) %> Details
+      <div class="pull-right">
+        <% if valid_user?(@product.user) %>
+          <%= link_to 'Edit Product', edit_product_path(@product) %>
+        <% else %>
+          <%= link_to @product.user.username , @product.user, class: "product-link" %>
+        <% end %>
+      </div>
+    </h1>
   </div>
   <div class="panel-body">
     <div>
@@ -29,16 +35,19 @@
     </div>
   </div>
 </div>
+
 <div class="panel panel-default">
-  <div class="panel-heading">Reviews</div>
+  <div class="panel-heading"><%= get_title(@product.title) %> Reviews</div>
   <div class="panel-body">
     <%= render 'reviews/reviews' %>
-    <% unless valid_user?(@product.user) %>
+
+    <% if (user_signed_in?) and !(valid_user?(@product.user)) %>
       <%= render 'reviews/review_form' %>
     <% end %>
+
+    <% unless user_signed_in? %>
+      Add your review by <%= link_to "Sign In", new_user_session_path %>
+    <% end %>
+
   </div>
 </div>
-<% if valid_user?(@product.user) %>
-  <%= link_to 'Edit', edit_product_path(@product) %> |
-<% end %>
-<%= link_to 'Back', products_path %>

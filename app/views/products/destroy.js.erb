@@ -2,5 +2,6 @@
   alert("Errors in removing your product.")
 <% else %>
   $("#product_row_<%= @product.id %>").remove();
+  $("#order-error").removeClass("hidden")
+  $("#error-msg").text("Product is succesfully deleted")
 <% end %>
-

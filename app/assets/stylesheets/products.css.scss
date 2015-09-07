@@ -26,4 +26,32 @@
   overflow:hidden;
   white-space:nowrap;
   text-overflow:ellipsis;
+  margin: 0 0 10px;
+}
+
+.price {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.product-details, .user-details {
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.product-group > .btn-group .btn {
+    width: 95%;
+}
+
+.search {
+  font-size: 25px;
+}
+
+.cart-order {
+  padding-top: 35px;
+}
+
+#cart-total-price {
+  font-size: 15px;
+  font-weight: 600;
 }
