@@ -1,4 +1,4 @@
-$("#cart-price").html("<%= number_to_currency(cart_total_price) %>")
+$("#cart-price").text("<%= number_to_currency(cart_total_price) %>")
 $("#cart_orders").html('')
 $("#cart-discount").html('')
 $("#cancel-order").attr('disabled', 'disabled')

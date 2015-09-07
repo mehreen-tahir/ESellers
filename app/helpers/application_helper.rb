@@ -13,4 +13,9 @@ module ApplicationHelper
     end
     nil
   end
+
+  def get_title value
+    value.titleize
+  end
+
 end

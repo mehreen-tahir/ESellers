@@ -1,7 +1,5 @@
 <% if @products.present? %>
-  <div id="order-error" class="alert alert-warning hidden">
-    This item is already in cart!
-  </div>
+  <div id="order-error" class="hidden"><%= render "order_items/cart_error_message" %></div>
 <h3>Products</h3>
 <div class="row">
 <% @products.each_with_index do |product, index| %>
@@ -12,7 +10,7 @@
           <%= format_price(product.price) %>
         </p>
         <p class="lead product-title">
-          <%= link_to product.title.titleize, product %>
+          <%= link_to get_title(product.title), product %>
         </p>
       </div>
       <div>
