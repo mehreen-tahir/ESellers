@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.search_for_index(params)
     @order_item = current_order.order_items.new
+    @search_query = params[:search]
     respond_with(@products)
   end
 

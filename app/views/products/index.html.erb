@@ -1,6 +1,11 @@
+<% if @search_query.blank? %>
+  <h1 class="search">All Products</h1>
+<% else %>
+  <h1 class="search">Results for <%= @search_query %></h1>
+<% end %>
+
 <% if @products.present? %>
   <div id="order-error" class="hidden"><%= render "order_items/cart_error_message" %></div>
-<h3>Products</h3>
 <div class="row">
 <% @products.each_with_index do |product, index| %>
   <div class="col-md-4">
