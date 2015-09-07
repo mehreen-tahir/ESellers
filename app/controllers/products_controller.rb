@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   respond_to :html
 
   def index
-    @products = Product.ordered.search_for_index(params)
+    @products = Product.search_for_index(params)
     @order_item = current_order.order_items.new
     respond_with(@products)
   end
