@@ -16,7 +16,7 @@ class CartsController < ApplicationController
     @coupon = Discount.get_coupon(params[:coupun][:discount_coupon]).last
     if @coupon.present?
       @discounted_price = discounted_price @coupon.discount_percentage
-      current_order.update_attributes(discounted_price: @discounted_price, is_discounted: true)
+      current_order.update_attributes(discounted_price: @discounted_price, is_discounted: true) if @discounted_price > 0
     end
   end
 

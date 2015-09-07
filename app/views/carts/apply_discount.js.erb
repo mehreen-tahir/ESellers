@@ -1,7 +1,10 @@
-<% if @discounted_price.present? and @discounted_price > 0 %>
-  $('#discount').html("Orignal price was <%= number_to_currency(current_order.orignal_price) %> & discounted price is <%= number_to_currency(@discounted_price) %>")
-  $("#cart-price").html("<%= number_to_currency(cart_total_price) %>")
-<% else %>
-  $('#discount').html("Discount request not completed!")
+<% if @discounted_price.blank? %>
+  $('#discount').text("Invalid coupun!")
   $('#coupun_discount_coupon').val('')
+<% elsif @discounted_price <= 0 %>
+  $('#discount').text("Invalid discounted price try other coupun!")
+  $('#coupun_discount_coupon').val('')
+<% else %>
+  $('#discount').text("Orignal price was <%= number_to_currency(current_order.orignal_price) %> & discounted price is <%= number_to_currency(@discounted_price) %>")
+  $("#cart-price").text("<%= number_to_currency(cart_total_price) %>")
 <% end %>
