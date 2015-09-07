@@ -7,5 +7,6 @@
     $("#error-msg").text("Try later couldn't add your order item to cart.")
   <% else %>
     $("#cart-price").text("<%= number_to_currency(cart_total_price) %>")
+    $("#cart-items").text("<%= cart_total_items %>")
   <% end %>
 <% end %>

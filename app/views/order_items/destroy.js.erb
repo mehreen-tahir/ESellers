@@ -5,12 +5,16 @@
   $("#error-msg").text("Item is removed from the cart!")
   $("#row_<%= @order_item.id %>").remove()
   $("#cart-price").text("<%= number_to_currency(cart_total_price) %>")
+  $("#cart-items").text("<%= cart_total_items %>")
+  $('#cart-total-price').text("SubTotal is <%= number_to_currency(current_order.orignal_price) %>")
+
+  <% if current_order.is_discounted %>
+   $('#cart-total-price').append("Discounted price is <%= number_to_currency(cart_total_price) %>")
+  <% end %>
 <% end %>
 
 <% unless current_order.order_items.count > 0 %>
-  $("#cart-discount").html('')
-  $("#cancel-order").attr('disabled', 'disabled')
-  $("#checkout-order").attr('disabled', 'disabled')
+  $("#cart_orders").html('')
   $("#order-error").removeClass("hidden")
   $("#error-msg").text("Cart is empty!")
 <% end %>
