@@ -1,4 +1,9 @@
-<% if @review %>
-  $('#review_list').last('tr').append("<%= j (render @review) %>");
+<% if @error.present? %>
+  $("#order-error").removeClass("hidden")
+  $("#error-msg").text("<%= @error %>")
+<% else %>
+  <% if @review %>
+    $('#review_list').last('tr').append("<%= j (render @review) %>");
+  <% end %>
+  $('#review_description').val('')
 <% end %>
-$('#review_description').val('')

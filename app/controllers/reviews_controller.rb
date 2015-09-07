@@ -2,7 +2,6 @@ class ReviewsController < ApplicationController
 
   before_filter :set_review, only: [:show, :edit, :update, :destroy]
   before_filter :set_product, except: [:index]
-  before_filter :authenticate_user!, except: [:show, :index]
 
   respond_to :html
 
@@ -25,7 +24,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    return false if valid_user?(@product.user)
+    @error = is_valid_review_user?
+    return false if @error.present?
     @review = @product.reviews.new(params[:review])
     @review.user = current_user
     respond_to do |format|
@@ -58,6 +58,14 @@ class ReviewsController < ApplicationController
 
     def set_product
       @product = Product.find(params[:product_id])
+    end
+
+    def is_valid_review_user?
+      if !(user_signed_in?)
+        return "You need to Sign in before proceeding!"
+      elsif valid_user?(@product.user)
+        return "You can't review your own product!"
+      end
     end
 
 end
