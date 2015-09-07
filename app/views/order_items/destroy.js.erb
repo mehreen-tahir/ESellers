@@ -1,12 +1,16 @@
 <% if @order_item.errors.any? %>
   alert("Errors in removing your order.")
 <% else %>
-  $("#row_<%= @order_item.id %>").remove();
-  $("#cart-price").html("<%= number_to_currency(cart_total_price) %>")
+  $("#order-error").removeClass("hidden")
+  $("#error-msg").text("Item is removed from the cart!")
+  $("#row_<%= @order_item.id %>").remove()
+  $("#cart-price").text("<%= number_to_currency(cart_total_price) %>")
 <% end %>
 
 <% unless current_order.order_items.count > 0 %>
   $("#cart-discount").html('')
   $("#cancel-order").attr('disabled', 'disabled')
   $("#checkout-order").attr('disabled', 'disabled')
+  $("#order-error").removeClass("hidden")
+  $("#error-msg").text("Cart is empty!")
 <% end %>

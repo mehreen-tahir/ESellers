@@ -1,10 +1,11 @@
-<% if @order_item.nil? %>
-  $("#order-error").removeClass("hidden");
+<% if @error.present? %>
+  $("#order-error").removeClass("hidden")
+  $("#error-msg").text("<%= @error %>")
 <% else %>
-  $("#order-error").addClass("hidden");
+   $("#order-error").addClass("hidden")
   <% if @order_item.errors.any? %>
-    alert("Try later couldn't add your order item to cart.")
+    $("#error-msg").text("Try later couldn't add your order item to cart.")
   <% else %>
-    $("#cart-price").html("<%= number_to_currency(cart_total_price) %>")
+    $("#cart-price").text("<%= number_to_currency(cart_total_price) %>")
   <% end %>
 <% end %>
