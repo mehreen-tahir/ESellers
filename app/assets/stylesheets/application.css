@@ -22,14 +22,27 @@
   background-color: white;
 }
 
-.search-bar {
-  margin-left: 150px;
-}
-
 .form-body {
   margin-left: 150px;
 }
 
 .body {
-    padding-top: 90px;
-  }
+  padding-top: 90px;
+}
+
+.product-navbar .navbar-brand, .product-navbar .navbar-nav > li > a {
+  color: #FFFFFF !important;
+}
+
+.product-navbar .navbar-brand:hover, .product-navbar .navbar-nav > li > a:hover,
+.product-navbar .navbar-brand:focus, .product-navbar .navbar-nav > li > a:focus {
+    color: #777777 !important;
+}
+
+.product-navbar .nav-list {
+  margin-left: 250px !important;
+}
+
+.footer {
+  background-color: black;
+}
