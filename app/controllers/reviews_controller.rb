@@ -1,12 +1,12 @@
 class ReviewsController < ApplicationController
 
   before_filter :set_review, only: [:show, :edit, :update, :destroy]
-  before_filter :set_product, except: [:index]
+  before_filter :set_product
 
   respond_to :html
 
   def index
-    @reviews = Review.all
+    @reviews =  @product.reviews
     respond_with(@reviews)
   end
 
@@ -43,7 +43,7 @@ class ReviewsController < ApplicationController
     return false unless valid_user?(@review.user)
     flash[:success] = "Review Sucessfully Updated"
     @review.update_attributes(params[:review])
-    respond_with(@review.product)
+    redirect_to dashboard_url
   end
 
   def destroy

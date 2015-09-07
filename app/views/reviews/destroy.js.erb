@@ -1,5 +1,16 @@
-<% if @review.errors.any? %>
-  alert("Errors in removing your review.")
+<% if @product.reviews.count > 0 %>
+
+  <% if @review.errors.any? %>
+    alert("Errors in removing your review.")
+  <% else %>
+    $("#row_<%= @review.id %>").remove();
+    $("#order-error").removeClass("hidden")
+    $("#error-msg").text("Review is succesfully deleted!")
+  <% end %>
+
 <% else %>
-  $("#row_<%= @review.id %>").remove();
+  $("#order-error").removeClass("hidden")
+  $("#error-msg").text("No review present")
+  $("#product-review").html(' ')
+
 <% end %>
