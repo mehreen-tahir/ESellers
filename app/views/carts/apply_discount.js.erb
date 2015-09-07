@@ -5,6 +5,8 @@
   $('#discount').text("Invalid discounted price try other coupun!")
   $('#coupun_discount_coupon').val('')
 <% else %>
-  $('#discount').text("Orignal price was <%= number_to_currency(current_order.orignal_price) %> & discounted price is <%= number_to_currency(@discounted_price) %>")
-  $("#cart-price").text("<%= number_to_currency(cart_total_price) %>")
+  $('#cart-total-price').text("SubTotal is <%= number_to_currency(current_order.orignal_price) %> Discounted price is <%= number_to_currency(@discounted_price) %>")
+  $('#cart-price').text("<%= number_to_currency(cart_total_price) %>")
+  $('#discount').text("")
+  $('#cart-discount').addClass("hidden")
 <% end %>

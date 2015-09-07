@@ -1,5 +1,5 @@
 $("#cart-price").text("<%= number_to_currency(cart_total_price) %>")
+$("#cart-items").text("<%= cart_total_items %>")
 $("#cart_orders").html('')
-$("#cart-discount").html('')
-$("#cancel-order").attr('disabled', 'disabled')
-$("#checkout-order").attr('disabled', 'disabled')
+$("#order-error").removeClass("hidden")
+$("#error-msg").text("Cart is empty!")

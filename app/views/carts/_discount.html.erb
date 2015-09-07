@@ -1,10 +1,6 @@
 <%= form_for(:coupun, url: apply_discount_cart_path, remote: true) do |f| %>
-  <div class="actions">
-    <div class="field">
-      <label for="coupon">Enter discount coupon</label>
-      <%= f.text_field :discount_coupon, required: true %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Get Discount", class:"btn btn-success" %>
+  <div class="field">
+      <%= f.text_field :discount_coupon, required: true, placeholder: "Enter discount coupon"%>
+      <%= f.submit "Get Discount", class:"btn btn-primary btn-sm" %>
   </div>
 <% end %>
