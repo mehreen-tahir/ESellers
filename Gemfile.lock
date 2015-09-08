@@ -138,6 +138,7 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+    pg (0.18.3)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.5)
@@ -156,6 +157,11 @@ GEM
       activesupport (= 3.2.13)
       bundler (~> 1.0)
       railties (= 3.2.13)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.4)
+    rails_stdout_logging (0.0.4)
     railties (3.2.13)
       actionpack (= 3.2.13)
       activesupport (= 3.2.13)
@@ -218,12 +224,11 @@ DEPENDENCIES
   mysql2
   nested_form
   paperclip
+  pg
   rails (= 3.2.13)
+  rails_12factor
   sass-rails (~> 3.2.3)
   therubyracer
   thinking-sphinx (~> 2.0.11)
   twitter-bootstrap-rails!
   uglifier (>= 1.0.3)
-
-BUNDLED WITH
-   1.10.6
