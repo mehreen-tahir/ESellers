@@ -10,7 +10,10 @@
   <div class="panel-body">
     <% if current_user.image.present? %>
       <%= link_to image_tag(current_user.picture_url("thumb")), current_user.picture_url %>
+    <% else %>
+      <%= image_tag "thumb/missing.png" %>
     <% end %>
+
     <div class="profile-username">
       <strong><%= get_title(current_user.username) %></strong>
     </div>
@@ -26,55 +29,73 @@
   <div class="panel-heading">Products</div>
   <div class="panel-body">
     <% if @products.present? %>
-      <% @products.each do |product| %>
-        <div id="product_row_<%= product.id %>">
-          <div class="product">
-            <div class="pull-left">
-               <% if product.images.present? %>
-                <%= link_to image_tag(product.images.first.photo(:thumb)), product.images.first.photo.url, class: "img-thumbnail" %>
-              <% end %>
-            </div>
-            <div class="content">
-              <h2 class="dashboard-product-title">
-                <b><%= get_title(product.title) %></b>
-              </h2>
+      <div class="row">
+        <% @products.each_with_index do |product, index| %>
+          <div class="col-md-4" id="product_row_<%= product.id %>">
+            <div class="thumbnail">
               <div>
-                <i><%= product.description %></i>
+                <h3 class="pull-right price">
+                  <%= format_price(product.price) %>
+                </h3>
+                <h2 class="lead product-title">
+                  <%= link_to get_title(product.title), product %>
+                </h2>
               </div>
-              <div class="pull-right">
-                <b><%= format_price(product.price) %></b>
-              </div>
-              <div class="product-methods">
-                <%= link_to 'Show', product %>
-                <%= link_to 'Edit', edit_product_path(product) %>
-                <%= link_to 'Delete', product, method: :delete, remote: true, data: { confirm: 'Do you really want to delete this product?' } %>
-                <% if product.reviews.present? %>
-                  <%= link_to 'View all reviews', product_reviews_path(product) %>
+              <div>
+                <% if product.images.present? %>
+                  <%= link_to image_tag(product.images.first.photo(:thumb)), product.images.first.photo.url %>
+                <% else %>
+                  <%= image_tag "thumb/missing.png", class: "default-img" %>
                 <% end %>
+              </div>
+              <div class="caption product-group">
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                  <div class="btn-group" role="group">
+                    <%= link_to 'Show', product, class: "btn btn-success"%>
+                  </div>
+                  <div class="btn-group" role="group">
+                    <%= link_to 'Edit', edit_product_path(product), class: "btn btn-primary" %>
+                  </div>
+                  <div class="btn-group" role="group">
+                    <%= link_to 'Delete', product, method: :delete, remote: true, data: { confirm: 'Do you really want to delete this product?' }, class: "btn btn-danger" %>
+                  </div>
+                  <div class="btn-group" role="group">
+                    <% if product.reviews.present? %>
+                      <%= link_to 'Reviews', product_reviews_path(product), class: "btn btn-info"  %>
+                    <% else %>
+                      <%= link_to 'Reviews', product_reviews_path(product), class: "btn btn-info disabled"  %>
+                    <% end %>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <hr>
-      <% end %>
+          <% if (index+1)%3==0 %>
+            <div class = 'clearfix'></div>
+          <% end %>
+        <% end %>
+      </div>
     <% else %>
       <div id ="user-products" class="product-reviews bg-info text-center"> No products to display!</div>
   <% end %>
   </div>
-<div class="pull-right"><%= paginate @products %></div>
+  <div><%= paginate @products %></div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-default dashboard-reviews">
   <div class="panel-heading">Your Reviews</div>
   <div class="panel-body">
     <% if @reviews.present? %>
       <table class="table table-striped table-hover">
+        <th>Reviews</th>
+        <th>Products</th>
+        <th>Actions</th>
         <% @reviews.each do |review| %>
           <tr id="row_<%= review.id %>">
             <td><%= review.description %></td>
-            <td><%= link_to 'Show', review.product %></td>
-            <td><%= link_to 'Edit', edit_product_review_path(review.product, review) %></td>
-            <td><%= link_to 'Delete', [review.product, review], method: :delete, remote: true, data: { confirm: 'Do you really want to delete this review?' } %></td>
+            <td><%= link_to get_title(review.product.title), review.product %></td>
+            <td><%= link_to 'Edit', edit_product_review_path(review.product, review),class: "edit-review" %>
+            <%= link_to 'Delete', [review.product, review], method: :delete, remote: true, data: { confirm: 'Do you really want to delete this review?' } %></td>
           </tr>
         <% end %>
       </table>
@@ -82,5 +103,5 @@
       <div id ="user-reviews" class="product-reviews bg-info text-center"> No Review to display!</div>
     <% end %>
   </div>
-<div class="pull-right"><%= paginate @reviews, param_name: :reviews %></div>
+<div><%= paginate @reviews, param_name: :reviews %></div>
 </div>
