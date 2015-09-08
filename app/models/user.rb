@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   validates :username, length: { minimum: 5 }
 
-  PER_PAGE = 10
+  PER_PAGE = 6
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
