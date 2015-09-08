@@ -40,9 +40,13 @@
 }
 
 .product-navbar .nav-list {
-  margin-left: 175px !important;
+  margin-left: 275px !important;
 }
 
 .footer {
   background-color: black;
+}
+
+.default-img {
+  margin-left: 130px;
 }

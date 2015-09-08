@@ -2,7 +2,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h1 class="product-details">
-      <%= get_title(@product.title) %> Details
+      <%= get_title(@product.title) %>
       <div class="pull-right">
         <% if valid_user?(@product.user) %>
           <%= link_to 'Edit Product', edit_product_path(@product) %>
@@ -18,16 +18,13 @@
         <%= link_to image_tag(picture.photo.url(:thumb)), picture.photo.url, class: "img-thumbnail" %>
       <% end %>
     </div>
-    <div>
-      <b><%= get_title(@product.title) %></b>
-    </div>
     <div class="pull-left">
       <i><%= @product.description %></i>
     </div>
     <div class="pull-right">
       <%= form_for @order_item, remote: true do |f| %>
         <%= f.hidden_field :product_id, value: @product.id %>
-        <%= f.submit 'Add To Cart', class: "btn btn-primary btn-sm" %>
+        <%= f.submit 'Add To Cart', class: "btn btn-success btn-sm" %>
       <% end %>
     </div>
     <div class="pull-right product-price">
@@ -51,3 +48,4 @@
 
   </div>
 </div>
+<%= link_to 'Back', :back %>

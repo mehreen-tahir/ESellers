@@ -21,12 +21,14 @@
       <div>
         <% if product.images.present? %>
             <%= link_to image_tag(product.images.first.photo(:thumb)), product.images.first.photo.url %>
+        <% else %>
+            <%= image_tag "thumb/missing.png", class: "default-img" %>
         <% end %>
       </div>
       <div class="caption product-group">
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
           <div class="btn-group" role="group">
-            <%= link_to 'Show', product, class: "btn btn-info"%>
+            <%= link_to 'Show', product, class: "btn btn-primary"%>
           </div>
             <div class="btn-group" role="group">
             <%= link_to 'Seller', product.user, class: "btn btn-default product-seller" %>
@@ -34,7 +36,7 @@
           <div class="btn-group" role="group">
             <%= form_for @order_item, remote: true do |f| %>
               <%= f.hidden_field :product_id, value: product.id %>
-              <%= f.submit 'Add To Cart', class: "btn btn-primary" %>
+              <%= f.submit 'Add To Cart', class: "btn btn-success" %>
             <% end %>
           </div>
         </div>
