@@ -14,6 +14,6 @@ Thank you for using Esellers. Your order was succesfull with the following detai
 <div>
   Payment was <%= number_to_currency(@order.orignal_price) %>
   <% if @order.is_discounted %>
-    and the discounted payment was <%= number_to_currency(@order.discounted_price) %>
+    and the discounted payment was <%= number_to_currency(@cart_total_price) %>
   <% end %>
 </div>
