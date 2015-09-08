@@ -4,6 +4,8 @@
       <div>
         <% if review.user.image.present? %>
           <%= link_to image_tag(review.user.picture_url("small")), review.user.picture_url, class: "img-thumbnail" %>
+        <% else %>
+          <%= image_tag "small/missing.png"%>
         <% end %>
         <%= link_to review.user.username, review.user, class: "review-user" %>
         <%= review.description %>
