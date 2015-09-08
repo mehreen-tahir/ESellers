@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :order_discounted_price
   helper_method :cart_total_price
   helper_method :cart_total_items
+  after_filter :store_location
 
   def current_order
     if session[:order_id].present? & Order.exists?(session[:order_id])
@@ -28,6 +29,14 @@ class ApplicationController < ActionController::Base
 
   def cart_total_items
      current_order.order_items.count
+  end
+
+  def store_location
+    session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
+  end
+
+  def after_sign_in_path_for(resource)
+    session[:previous_url] || root_path
   end
 
 end
