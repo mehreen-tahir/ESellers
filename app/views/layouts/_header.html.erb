@@ -11,15 +11,17 @@
         <%= link_to 'ESellers', root_path, class: "navbar-brand animate"%>
       </div>
     </div>
-    <ul class="nav navbar-nav nav-list">
+    <ul class="nav navbar-nav navbar-left">
       <li><%= link_to 'Sell Product', new_product_path %></li>
+    </ul>
+    <ul class="nav navbar-nav nav-list">
       <%= form_tag products_path, class: "navbar-form navbar-left", method: :get do %>
         <li class="form-group">
           <%= text_field_tag :search, params[:search], placeholder: "Search Product",class: "form-control" %>
           <%= submit_tag "Search", class:"btn btn-primary" %>
         </li>
       <% end %>
-      <li><button class="btn btn-default btn-lg active" id="cart-price"><%= number_to_currency(cart_total_price) %></button></li>
+      <li><a id="cart-price" class="pull-left"><%= number_to_currency(cart_total_price) %></a></li>
       <li>
         <%= link_to "Cart", cart_path, class: "pull-left" %>
         <span class="badge" id="cart-items"><%= cart_total_items %></span>
@@ -36,9 +38,13 @@
             <li><%= link_to "\tSign out",destroy_user_session_path %></li>
           </ul>
         </li>
-        <% if current_user.image.present? %>
-          <li class="profile-image"><%= image_tag(current_user.image.photo.url(:thumb)) %></li>
-        <% end %>
+        <li class="profile-image">
+          <% if current_user.image.present? %>
+            <%= image_tag(current_user.image.photo.url(:thumb)) %>
+          <% else %>
+            <%= image_tag "thumb/missing.png" %>
+          <% end %>
+        </li>
       <% else %>
         <li><%= link_to "Sign In", new_user_session_path %></li>
         <li><%= link_to "Sign Up", new_user_registration_path %></li>
