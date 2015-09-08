@@ -1,4 +1,9 @@
 <div id="order-error" class="hidden"><%= render "order_items/cart_error_message" %></div>
+
+<div class="hidden" id="add-products">
+  <%= link_to 'Buy More Products', root_path, class: "btn btn-warning" %>
+</div>
+
 <h3>Cart</h3>
 <% if @order_items.present? %>
 <div id="cart_orders">
@@ -38,11 +43,11 @@
 
   <div class="cart-order">
     <div class="pull-left">
-      <%= link_to '< Continue Shopping',  root_path, class: "btn btn-warning" %>
+      <%= link_to 'Buy More Products', root_path, class: "btn btn-warning" %>
     </div>
     <div class="pull-right">
       <%= link_to 'Cancel Order', cart_path, method: :delete, remote: true, data: { confirm: 'Do you really want to remove the entire order?' }, class: "btn btn-danger", id: "cancel-order" %>
-      <%= link_to 'Checkout Order >',  new_transaction_path, class: "btn btn-primary", id: "checkout-order" %>
+      <%= link_to 'Checkout Order',  new_transaction_path, class: "btn btn-primary", id: "checkout-order" %>
     </div>
   </div>
 

@@ -2,7 +2,8 @@
   $("#order-error").removeClass("hidden")
   $("#error-msg").text("<%= @error %>")
 <% else %>
-   $("#order-error").addClass("hidden")
+   $("#order-error").removeClass("hidden")
+   $("#error-msg").text("Item added to cart!")
   <% if @order_item.errors.any? %>
     $("#error-msg").text("Try later couldn't add your order item to cart.")
   <% else %>
