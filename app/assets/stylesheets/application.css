@@ -45,8 +45,13 @@
 
 .footer {
   background-color: black;
+  height: 35px;
 }
 
 .default-img {
   margin-left: 130px;
+}
+
+.foot-text {
+  margin-top: 10px;
 }
