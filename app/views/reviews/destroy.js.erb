@@ -3,7 +3,7 @@
   <% if @review.errors.any? %>
     alert("Errors in removing your review.")
   <% else %>
-    $("#row_<%= @review.id %>").remove();
+    $("#row_<%= @review.id %>").remove()
     $("#order-error").removeClass("hidden")
     $("#error-msg").text("Review is succesfully deleted!")
   <% end %>
@@ -12,5 +12,6 @@
   $("#order-error").removeClass("hidden")
   $("#error-msg").text("No review present")
   $("#product-review").html(' ')
+  $("#row_<%= @review.id %>").remove()
 
 <% end %>

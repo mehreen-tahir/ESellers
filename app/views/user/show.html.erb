@@ -1,12 +1,14 @@
 <div id="order-error" class="hidden"><%= render "order_items/cart_error_message" %></div>
 <div class="panel panel-default">
-  <div class="panel-heading">User Information</div>
+  <div class="panel-heading">
+    <h1 class="user-details"><%= @user.username %> Profile</h1>
+  </div>
   <div class="panel-body">
     <% if @user.image.present? %>
       <%= link_to image_tag(@user.picture_url("thumb")), @user.picture_url %>
     <% end %>
     <div class="profile-username">
-      <b><%= @user.username %></b>
+      <strong><%= @user.username %></strong>
     </div>
     <div class="pull-left">
       <i><%= @user.email %></i>
@@ -18,19 +20,19 @@
   <div class="col-md-4">
     <div class="thumbnail">
       <div>
-        <p class="pull-right">
+        <h3 class="pull-right price">
           <%= format_price(product.price) %>
-        </p>
-        <p class="lead product-title">
+        </h3>
+        <h2 class="lead product-title">
           <%= link_to get_title(product.title), product %>
-        </p>
+        </h2>
       </div>
       <div>
         <% if product.images.present? %>
             <%= link_to image_tag(product.images.first.photo(:thumb)), product.images.first.photo.url %>
         <% end %>
       </div>
-      <div class="caption">
+      <div class="caption product-group">
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
           <div class="btn-group" role="group">
             <%= link_to 'Show', product, class: "btn btn-default"%>
@@ -38,7 +40,7 @@
           <div class="btn-group" role="group">
             <%= form_for @order_item, remote: true do |f| %>
               <%= f.hidden_field :product_id, value: product.id %>
-              <%= f.submit 'Add To Cart', class: "btn btn-default" %>
+              <%= f.submit 'Add To Cart', class: "btn btn-primary" %>
             <% end %>
           </div>
         </div>
