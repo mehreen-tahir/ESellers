@@ -6,9 +6,13 @@ class ProductsController < ApplicationController
   respond_to :html
 
   def index
-    @products = Product.search_for_index(params)
-    @order_item = current_order.order_items.new
+    if params.has_key?(:search)
+      @products = Product.search_for_index(params)
+    else
+      @products = Product.ordered.includes(:images).page(params[:page]).per(Product::PER_PAGE)
+    end
     @search_query = params[:search]
+    @order_item = current_order.order_items.new
     respond_with(@products)
   end
 
