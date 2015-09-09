@@ -49,7 +49,7 @@ Eseller::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+   config.action_mailer.raise_delivery_errors = true
 
   # Enable threaded mode
   # config.threadsafe!
@@ -68,13 +68,14 @@ Eseller::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
 
-  config.action_mailer.smtp_settings = {
+    ActionMailer::Base.smtp_settings = {
     address: "smtp.sendgrid.net",
-    port: 25,
+    port: "587",
     domain: "heroku.com",
-    authentication: "plain",
+    authentication: :plain,
     enable_starttls_auto: true,
     user_name: ENV["SENDGRID_USERNAME"],
-    password: ENV["SENDGRID_PASSWORD"]
+    password: ENV["SENDGRID_PASSWORD"],
+    openssl_verify_mode: 'none'
   }
 end
