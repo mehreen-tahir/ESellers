@@ -49,7 +49,7 @@ Eseller::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+   config.action_mailer.raise_delivery_errors = true
 
   # Enable threaded mode
   # config.threadsafe!
@@ -64,15 +64,19 @@ Eseller::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
-  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.default_url_options = {host:'rocky-springs-8430.herokuapp.com'}
+
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'evening-reaches-9094.heroku.com' }
-  ActionMailer::Base.smtp_settings = {
-    :address    => "smtp.sendgrid.net",
-    :port       => 25,
-    :user_name  => ENV['SENDGRID_USERNAME'],
-    :password   => ENV['SENDGRID_PASSWORD'],
-    :domain     => ENV['SENDGRID_DOMAIN'],
-    :authentication  => :plain
+
+    ActionMailer::Base.smtp_settings = {
+    address: "smtp.sendgrid.net",
+    port: "587",
+    domain: "heroku.com",
+    authentication: :plain,
+    enable_starttls_auto: true,
+    user_name: ENV["SENDGRID_USERNAME"],
+    password: ENV["SENDGRID_PASSWORD"],
+    openssl_verify_mode: 'none'
   }
 end
