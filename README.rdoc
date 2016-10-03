@@ -1,4 +1,4 @@
-ESellers is a ECommerce application built in rails 3 that provides the user with the platform to sale his products. User can add items to cart, apply discount coupons onto them and checkout the order by braintree payment gateway. Devise based email confirmations are added to ensure security.
+ESellers is an ECommerce application built in rails 3 that provides the user with the platform to sale his products. User can add items to cart, apply discount coupons onto them and checkout the order by braintree payment gateway. Devise based email confirmations are added to ensure security.
 Each user will have a private dashboard and a public show page from which his products can be viewed.
 Thinking Sphinx is used for searching on the basis of product title, description and reviews.
 Active Admin is used for providing the admin support.
